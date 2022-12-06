@@ -1,0 +1,58 @@
+// QUESTION 1
+
+function d_split_list(xs) {
+
+    // *** Your answer here. ***
+    
+    function tail_of_pair(xs, middle){
+        
+        if (length_of_xs % 2 === 0){
+            
+            return even_list(xs, length_of_xs/2);
+        }
+        else {
+            return odd_list(xs, length_of_xs/2);
+        }
+    }
+    function even_list(xs, middle){
+                return !(middle > 0)
+                ? xs
+                : even_list(tail(xs), middle-1);
+            }
+            
+    function odd_list(xs, middle){
+                return !(middle >= 0)
+                ? xs
+                : odd_list(tail(xs), middle-1);
+            }
+        
+    function head_of_pair(xs){
+        if (is_null(xs)){
+            return xs;
+        } else if (n<length_of_xs/2){
+            n = n+1;
+            set_tail(xs, head_of_pair(tail(xs)));
+            return xs;
+        } else {
+            return head_of_pair(tail(xs));
+        }
+    }
+    
+    
+            
+    const length_of_xs = length(xs);
+    let n = 0;
+    
+    const tail_pair = tail_of_pair(xs, length_of_xs/2);
+    const head_pair = head_of_pair(xs);
+    
+    return pair(head_pair, tail_pair);
+    
+    
+}
+
+// TEST:
+const my_list1 = list(1, 2, 3, 4, 5, 6);
+const my_list2 = list(5, 4, 3, 2, 1);
+//d_split_list(my_list1);
+d_split_list(my_list2);
